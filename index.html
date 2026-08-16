@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Красивый таймер обратного отсчёта до важного события.">
+  <title>Скоро! — таймер события</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-glow glow-one"></div>
+  <div class="page-glow glow-two"></div>
+
+  <main class="container">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Скоро, на главную"><span class="brand-mark">✦</span>скоро!</a>
+      <p class="topbar-note">Важное уже на пути</p>
+    </header>
+
+    <section class="hero" id="top" aria-labelledby="event-title">
+      <div class="hero-copy">
+        <p class="eyebrow">ВАШЕ СОБЫТИЕ</p>
+        <h1 id="event-title">Новый год</h1>
+        <p class="event-date" id="event-date">1 января 2027</p>
+        <p class="status" id="timer-status" aria-live="polite">Готовимся к чуду!</p>
+      </div>
+
+      <div class="timer" aria-label="Обратный отсчёт">
+        <div class="time-cell"><strong id="days">000</strong><span>дней</span></div>
+        <div class="time-cell"><strong id="hours">00</strong><span>часов</span></div>
+        <div class="time-cell"><strong id="minutes">00</strong><span>минут</span></div>
+        <div class="time-cell"><strong id="seconds">00</strong><span>секунд</span></div>
+      </div>
+    </section>
+
+    <section class="event-picker card" aria-labelledby="picker-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">НАСТРОЙКА</p>
+          <h2 id="picker-title">Выберите повод</h2>
+        </div>
+        <span class="small-badge">Сохранится на этом устройстве</span>
+      </div>
+
+      <form id="event-form" novalidate>
+        <fieldset class="event-options">
+          <legend class="sr-only">Тип события</legend>
+          <label class="event-option"><input type="radio" name="event-type" value="birthday"><span class="option-icon">🎂</span><span>День рождения</span></label>
+          <label class="event-option"><input type="radio" name="event-type" value="vacation"><span class="option-icon">🏖️</span><span>Каникулы</span></label>
+          <label class="event-option"><input type="radio" name="event-type" value="newyear" checked><span class="option-icon">🎆</span><span>Новый год</span></label>
+          <label class="event-option"><input type="radio" name="event-type" value="custom"><span class="option-icon">✨</span><span>Своё событие</span></label>
+        </fieldset>
+
+        <div class="form-fields">
+          <label class="field" id="custom-name-field" hidden>
+            <span>Название события</span>
+            <input id="custom-name" type="text" maxlength="48" placeholder="Например, концерт любимой группы">
+          </label>
+          <label class="field">
+            <span>Дата события</span>
+            <input id="event-input-date" type="date" required>
+          </label>
+          <button class="button" type="submit">Установить таймер <span>→</span></button>
+        </div>
+        <p class="form-message" id="form-message" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <section class="daily-grid" aria-label="Вдохновение на сегодня">
+      <article class="fact-card card">
+        <p class="card-kicker">🔎 ФАКТ ДНЯ</p>
+        <p class="fact-text" id="fact-text"></p>
+        <span class="day-stamp" id="day-stamp"></span>
+      </article>
+
+      <article class="picture-card">
+        <img src="assets/day-picture.svg" alt="Иллюстрация воздушного шара, летящего к яркому будущему">
+        <div class="picture-caption"><span>Картинка дня</span><strong id="picture-title">Вперёд к мечте</strong></div>
+      </article>
+
+      <article class="quote-card card">
+        <p class="card-kicker">💬 ФРАЗА ДНЯ</p>
+        <blockquote id="quote-text"></blockquote>
+        <span class="quote-decoration">“</span>
+      </article>
+    </section>
+
+    <footer>Сделано для важных моментов <span>✦</span></footer>
+  </main>
+
+  <div class="modal" id="confirm-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-panel">
+      <div class="modal-icon">✦</div>
+      <p class="eyebrow">ПОДТВЕРЖДЕНИЕ</p>
+      <h2 id="modal-title">Установить событие?</h2>
+      <p id="modal-description"></p>
+      <div class="modal-actions">
+        <button class="button button-muted" id="cancel-button" type="button">Отмена</button>
+        <button class="button" id="confirm-button" type="button">Да, установить</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
